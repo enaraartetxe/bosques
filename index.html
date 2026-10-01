@@ -1,216 +1,319 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bosques del Mundo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --musgo: #2f4a2c;
-      --pino: #1c2e1b;
-      --helecho: #6b8f47;
-      --corteza: #6a4a32;
-      --niebla: #f3f1e8;
-      --papel: #faf9f4;
-      --texto: #22281f;
-      --suave: #5d6657;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      color: var(--texto);
-      background: var(--papel);
-      line-height: 1.65;
-    }
-    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; }
-    a { color: inherit; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>María Vidal — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --grey:#ACBEA3;
+    --indigo:#40476D;
+    --olive:#826754;
+    --clay:#AD5D4E;
+    --flame:#EB6534;
+    --cream:#F4F3EE;
+    --ink:#22241f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500;}
 
-    /* Navegación */
-    nav {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(28, 46, 27, 0.95);
-      backdrop-filter: blur(6px);
-    }
-    nav .contenedor {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px 20px; max-width: 1100px; margin: 0 auto;
-    }
-    nav .logo { color: #fff; font-family: "Fraunces", serif; font-size: 1.3rem; text-decoration: none; }
-    nav ul { list-style: none; display: flex; gap: 22px; }
-    nav ul a { color: #d7e3c8; text-decoration: none; font-size: .95rem; }
-    nav ul a:hover { color: #fff; }
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 6vw;
+    background:rgba(244,243,238,.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(34,36,31,.08);
+  }
+  .logo{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--indigo); color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:18px; flex-shrink:0;
+  }
+  nav{
+    display:flex; gap:8px;
+    position:absolute; left:50%; transform:translateX(-50%);
+  }
+  nav button{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px; padding:9px 20px; border-radius:20px;
+    border:1px solid var(--indigo); background:transparent;
+    color:var(--indigo); cursor:pointer; transition:.25s;
+  }
+  nav button:hover{ background:var(--indigo); color:var(--cream); }
 
-    /* Portada */
-    .portada {
-      background: linear-gradient(160deg, var(--pino) 0%, var(--musgo) 55%, var(--helecho) 100%);
-      color: #fff;
-      padding: 80px 20px;
-    }
-    .portada .contenedor {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;
-    }
-    .portada .etiqueta {
-      text-transform: uppercase; letter-spacing: .15em; font-size: .8rem; color: #c3d9a8;
-    }
-    .portada h1 { font-size: clamp(2.4rem, 6vw, 4rem); margin: 12px 0 20px; }
-    .portada p { font-size: 1.1rem; color: #e3ecd8; max-width: 34em; }
-    .boton {
-      display: inline-block; margin-top: 28px; padding: 12px 26px;
-      background: var(--niebla); color: var(--pino); border-radius: 999px;
-      text-decoration: none; font-weight: 500;
-    }
-    .boton:hover { background: #fff; }
-    .marco-imagen {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 20px; padding: 16px;
-    }
-    .marco-imagen img {
-      width: 100%; height: auto; display: block; border-radius: 12px;
-      aspect-ratio: 4 / 5; object-fit: cover;
-    }
-    .marco-imagen figcaption { font-size: .85rem; color: #c3d9a8; margin-top: 10px; text-align: center; }
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+    background:var(--cream);
+    padding-bottom:90px;
+  }
+  .hero-dark{
+    position:absolute; inset:0;
+    background:var(--indigo);
+    clip-path: path('M 0 0 L 100% 0 L 100% 38% C 78% 30%, 55% 52%, 32% 46% C 18% 42%, 10% 58%, 0 50% Z');
+  }
+  .hero-band{
+    position:absolute; inset:0;
+    background: linear-gradient(100deg, var(--flame), var(--clay));
+    clip-path: path('M 0 50% C 10% 58%, 18% 42%, 32% 46% C 55% 52%, 78% 30%, 100% 38% L 100% 44% C 78% 36%, 55% 58%, 32% 52% C 18% 48%, 10% 64%, 0 56% Z');
+    opacity:.95;
+  }
+  .hero-copy{
+    position:relative; z-index:2;
+    padding:0 6vw;
+    max-width:640px;
+  }
+  .hero-copy p.kicker{ color:var(--olive); font-size:15px; margin-bottom:10px; }
+  .hero-copy h1{
+    font-size:clamp(38px, 6vw, 68px);
+    line-height:1.05;
+    color:var(--ink);
+  }
+  .hero-copy p.desc{
+    margin-top:18px; font-size:17px; max-width:480px; color:#4b4d45;
+  }
 
-    /* Secciones */
-    section { padding: 72px 20px; }
-    .contenedor { max-width: 1100px; margin: 0 auto; }
-    .titulo-seccion { font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--musgo); margin-bottom: 12px; }
-    .intro { color: var(--suave); max-width: 40em; margin-bottom: 40px; }
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 6vw; }
+  .section-head{ margin-bottom:48px; max-width:600px; }
+  .section-head h2{ font-size:clamp(30px,4vw,44px); }
 
-    .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
-    .tarjeta {
-      background: #fff; border-radius: 16px; padding: 26px;
-      border-top: 5px solid var(--helecho);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-    .tarjeta .icono { font-size: 2rem; }
-    .tarjeta h3 { font-size: 1.3rem; margin: 10px 0 8px; color: var(--pino); }
-    .tarjeta p { color: var(--suave); font-size: .95rem; }
+  /* SOBRE MI */
+  #sobre{
+    display:grid; grid-template-columns:340px 1fr; gap:64px;
+    align-items:center; background:var(--cream);
+  }
+  .foto-blob{
+    width:100%; aspect-ratio:4/5;
+    border-radius:40% 60% 55% 45% / 50% 40% 60% 50%;
+    background:linear-gradient(160deg, var(--grey), var(--olive));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; color:var(--cream); font-size:20px;
+  }
+  .sobre-text h2{ margin-bottom:20px; }
+  .sobre-text p{ font-size:17px; line-height:1.7; color:#3b3d36; max-width:56ch; margin-bottom:16px; }
+  .sobre-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; }
+  .sobre-tags span{
+    font-size:13px; padding:7px 14px; border-radius:14px;
+    background:var(--grey); color:var(--indigo);
+  }
 
-    .datos { background: var(--niebla); }
-    .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; }
-    .cifra { text-align: center; padding: 20px; }
-    .cifra strong { display: block; font-family: "Fraunces", serif; font-size: 2.6rem; color: var(--corteza); }
-    .cifra span { color: var(--suave); }
+  /* CARRUSEL COMUN */
+  .carrusel-wrap{ position:relative; }
+  .carrusel-track{
+    display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory;
+    scrollbar-width:none; padding-bottom:6px;
+  }
+  .carrusel-track::-webkit-scrollbar{ display:none; }
+  .arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:46px; height:46px; border-radius:50%; border:none;
+    background:var(--indigo); color:var(--cream); font-size:18px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    z-index:3; transition:.2s;
+  }
+  .arrow:hover{ background:var(--flame); }
+  .arrow.left{ left:-8px; }
+  .arrow.right{ right:-8px; }
 
-    .proteger .contenedor { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    .proteger ol { padding-left: 1.2em; }
-    .proteger li { margin-bottom: 14px; }
-    .proteger li strong { color: var(--musgo); }
-    .cita {
-      background: var(--musgo); color: #eef3e6; border-radius: 16px; padding: 32px;
-      font-family: "Fraunces", serif; font-size: 1.3rem;
-    }
-    .cita small { display: block; font-family: "Inter", sans-serif; font-size: .9rem; margin-top: 14px; color: #c3d9a8; }
+  /* PROYECTOS */
+  #proyectos{ background:var(--indigo); color:var(--cream); }
+  #proyectos .section-head h2{ color:var(--cream); }
+  #proyectos .section-head p{ color:var(--grey); margin-top:10px; }
+  .proy-card{
+    flex:0 0 260px; scroll-snap-align:start;
+    background:rgba(244,243,238,.06);
+    border:1px solid rgba(244,243,238,.18);
+    border-radius:18px; overflow:hidden;
+  }
+  .proy-thumb{
+    height:170px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:15px; color:rgba(244,243,238,.85);
+  }
+  .proy-card:nth-child(1) .proy-thumb{ background:linear-gradient(135deg,var(--clay),var(--flame)); }
+  .proy-card:nth-child(2) .proy-thumb{ background:linear-gradient(135deg,var(--olive),var(--grey)); }
+  .proy-card:nth-child(3) .proy-thumb{ background:linear-gradient(135deg,var(--flame),var(--olive)); }
+  .proy-card:nth-child(4) .proy-thumb{ background:linear-gradient(135deg,var(--grey),var(--clay)); }
+  .proy-card:nth-child(5) .proy-thumb{ background:linear-gradient(135deg,var(--clay),var(--grey)); }
+  .proy-card:nth-child(6) .proy-thumb{ background:linear-gradient(135deg,var(--olive),var(--flame)); }
+  .proy-body{ padding:18px 20px 22px; }
+  .proy-body p.tag{ font-size:12px; color:var(--flame); margin-bottom:6px; }
+  .proy-body h3{ font-size:19px; font-weight:500; margin-bottom:8px; }
+  .proy-body p.desc{ font-size:14px; color:rgba(244,243,238,.75); line-height:1.5; }
 
-    footer { background: var(--pino); color: #b8c9a6; text-align: center; padding: 30px 20px; font-size: .9rem; }
+  /* CLIENTES */
+  #clientes{ background:var(--cream); }
+  .cli-item{
+    flex:0 0 140px; scroll-snap-align:start;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+  }
+  .cli-circ{
+    width:120px; height:120px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:22px; color:var(--cream);
+  }
+  .cli-item:nth-child(1) .cli-circ{ background:var(--olive); }
+  .cli-item:nth-child(2) .cli-circ{ background:var(--clay); }
+  .cli-item:nth-child(3) .cli-circ{ background:var(--indigo); }
+  .cli-item:nth-child(4) .cli-circ{ background:var(--flame); }
+  .cli-item:nth-child(5) .cli-circ{ background:var(--grey); color:var(--indigo); }
+  .cli-item:nth-child(6) .cli-circ{ background:var(--indigo); }
+  .cli-item:nth-child(7) .cli-circ{ background:var(--clay); }
+  .cli-item:nth-child(8) .cli-circ{ background:var(--olive); }
+  .cli-item span{ font-size:14px; color:#4b4d45; text-align:center; }
 
-    @media (max-width: 780px) {
-      nav ul { gap: 14px; }
-      nav ul li:nth-child(n+3) { display: none; }
-      .portada { padding: 50px 16px; }
-      .portada .contenedor, .proteger .contenedor { grid-template-columns: 1fr; }
-      section { padding: 52px 16px; }
-    }
-  </style>
+  /* FOOTER */
+  footer{
+    background:var(--cream);
+    border-top:1px solid rgba(34,36,31,.12);
+    padding:70px 6vw 40px;
+  }
+  .foot-grid{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px;
+    max-width:1100px; margin:0 auto;
+  }
+  footer h2{ font-size:28px; margin-bottom:14px; }
+  footer .foot-contact p{ font-size:15px; margin-bottom:8px; color:#3b3d36; }
+  footer .foot-contact a{ color:var(--indigo); text-decoration:none; }
+  footer .foot-contact a:hover{ text-decoration:underline; }
+  .foot-social{ display:flex; gap:14px; align-items:flex-start; }
+  .foot-social a{
+    font-size:13px; padding:8px 16px; border-radius:16px;
+    border:1px solid var(--indigo); color:var(--indigo); text-decoration:none;
+  }
+  .foot-bottom{
+    text-align:center; margin-top:50px; font-size:13px; color:#7a7c73;
+  }
+
+  @media (max-width:820px){
+    nav{ position:static; transform:none; }
+    header{ flex-wrap:wrap; row-gap:10px; }
+    nav button{ padding:7px 12px; font-size:13px; }
+    #sobre{ grid-template-columns:1fr; }
+    .foto-blob{ max-width:280px; margin:0 auto; }
+  }
+</style>
 </head>
 <body>
 
+<header>
+  <div class="logo">MV</div>
   <nav>
-    <div class="contenedor">
-      <a href="#" class="logo">🌲 Bosques</a>
-      <ul>
-        <li><a href="#tipos">Tipos</a></li>
-        <li><a href="#datos">Datos</a></li>
-        <li><a href="#proteger">Proteger</a></li>
-      </ul>
-    </div>
+    <button onclick="document.getElementById('sobre').scrollIntoView()">Sobre mí</button>
+    <button onclick="document.getElementById('proyectos').scrollIntoView()">Proyectos</button>
+    <button onclick="document.getElementById('clientes').scrollIntoView()">Clientes</button>
   </nav>
+</header>
 
-  <header class="portada">
-    <div class="contenedor">
-      <div>
-        <span class="etiqueta">Los pulmones del planeta</span>
-        <h1>Descubre la vida que late en los bosques</h1>
-        <p>Los bosques cubren casi un tercio de la tierra firme, regulan el clima, filtran el agua y dan hogar a la mayor parte de las especies terrestres. Conocerlos es el primer paso para cuidarlos.</p>
-        <a href="#tipos" class="boton">Explorar bosques</a>
-      </div>
-      <figure class="marco-imagen">
-        <img src="img/arbol.png" alt="Árbol del bosque">
-        <figcaption>Cada árbol es un ecosistema en sí mismo.</figcaption>
-      </figure>
+<div class="hero">
+  <div class="hero-dark"></div>
+  <div class="hero-band"></div>
+  <div class="hero-copy">
+    <p class="kicker">Diseño &amp; desarrollo web freelance</p>
+    <h1>María Vidal</h1>
+    <p class="desc">Construyo páginas y productos digitales con identidad propia, desde el boceto hasta el código. Trabajo con marcas, estudios y equipos pequeños que quieren algo que no se parezca a lo de nadie más.</p>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="foto-blob">Foto</div>
+  <div class="sobre-text">
+    <h2>Sobre mí</h2>
+    <p>Soy diseñadora y desarrolladora web con base en Bilbao. Llevo ocho años ayudando a estudios creativos y pequeñas marcas a construir su presencia digital, cuidando cada detalle desde el primer boceto hasta la última línea de código.</p>
+    <p>Me interesa especialmente el punto de encuentro entre diseño gráfico y desarrollo: páginas que se ven bien y también funcionan bien, sin plantillas de por medio.</p>
+    <div class="sobre-tags">
+      <span>Diseño de marca</span>
+      <span>Desarrollo web</span>
+      <span>UI/UX</span>
+      <span>Ilustración</span>
     </div>
-  </header>
+  </div>
+</section>
 
-  <section id="tipos">
-    <div class="contenedor">
-      <h2 class="titulo-seccion">Tipos de bosque</h2>
-      <p class="intro">El clima, la latitud y la altitud dan forma a bosques muy distintos entre sí. Estos son algunos de los principales.</p>
-      <div class="tarjetas">
-        <article class="tarjeta">
-          <div class="icono">🌴</div>
-          <h3>Bosque tropical</h3>
-          <p>Cálido y húmedo todo el año. Alberga la mayor biodiversidad del planeta, como la Amazonía o el Congo.</p>
-        </article>
-        <article class="tarjeta">
-          <div class="icono">🍂</div>
-          <h3>Bosque templado</h3>
-          <p>Estaciones marcadas y árboles caducifolios como robles, hayas y castaños que pierden la hoja en otoño.</p>
-        </article>
-        <article class="tarjeta">
-          <div class="icono">🌲</div>
-          <h3>Taiga o bosque boreal</h3>
-          <p>El bioma forestal más extenso. Coníferas resistentes al frío que cubren Canadá, Escandinavia y Siberia.</p>
-        </article>
-        <article class="tarjeta">
-          <div class="icono">🌿</div>
-          <h3>Bosque mediterráneo</h3>
-          <p>Veranos secos e inviernos suaves. Encinas, alcornoques y pinos adaptados a la sequía y al fuego.</p>
-        </article>
+<section id="proyectos">
+  <div class="section-head">
+    <h2>Proyectos</h2>
+    <p>Una selección de trabajos recientes para clientes y estudios.</p>
+  </div>
+  <div class="carrusel-wrap">
+    <button class="arrow left" onclick="scrollCarrusel('proy',-1)">‹</button>
+    <div class="carrusel-track" id="proy-track">
+      <div class="proy-card"><div class="proy-thumb">Imagen</div><div class="proy-body"><p class="tag">Identidad · 2025</p><h3>Estudio Nómada</h3><p class="desc">Identidad visual y sitio web para un estudio de arquitectura.</p></div></div>
+      <div class="proy-card"><div class="proy-thumb">Imagen</div><div class="proy-body"><p class="tag">E-commerce · 2025</p><h3>Terra Cerámica</h3><p class="desc">Tienda online para un taller de cerámica artesanal.</p></div></div>
+      <div class="proy-card"><div class="proy-thumb">Imagen</div><div class="proy-body"><p class="tag">Web app · 2024</p><h3>Panal Coworking</h3><p class="desc">Plataforma de reservas para un espacio de coworking.</p></div></div>
+      <div class="proy-card"><div class="proy-thumb">Imagen</div><div class="proy-body"><p class="tag">Branding · 2024</p><h3>Café Lumbre</h3><p class="desc">Naming, logo y packaging para una cafetería de barrio.</p></div></div>
+      <div class="proy-card"><div class="proy-thumb">Imagen</div><div class="proy-body"><p class="tag">Editorial · 2023</p><h3>Revista Hierba</h3><p class="desc">Maquetación y web para una revista de jardinería.</p></div></div>
+      <div class="proy-card"><div class="proy-thumb">Imagen</div><div class="proy-body"><p class="tag">Portfolio · 2023</p><h3>Atelier Roig</h3><p class="desc">Sitio de portfolio para una ilustradora textil.</p></div></div>
+    </div>
+    <button class="arrow right" onclick="scrollCarrusel('proy',1)">›</button>
+  </div>
+</section>
+
+<section id="clientes">
+  <div class="section-head">
+    <h2>Clientes</h2>
+    <p>Marcas y estudios con los que he trabajado.</p>
+  </div>
+  <div class="carrusel-wrap">
+    <button class="arrow left" onclick="scrollCarrusel('cli',-1)">‹</button>
+    <div class="carrusel-track" id="cli-track">
+      <div class="cli-item"><div class="cli-circ">EN</div><span>Estudio Nómada</span></div>
+      <div class="cli-item"><div class="cli-circ">TC</div><span>Terra Cerámica</span></div>
+      <div class="cli-item"><div class="cli-circ">PC</div><span>Panal Coworking</span></div>
+      <div class="cli-item"><div class="cli-circ">CL</div><span>Café Lumbre</span></div>
+      <div class="cli-item"><div class="cli-circ">RH</div><span>Revista Hierba</span></div>
+      <div class="cli-item"><div class="cli-circ">AR</div><span>Atelier Roig</span></div>
+      <div class="cli-item"><div class="cli-circ">NV</div><span>Norte Vivo</span></div>
+      <div class="cli-item"><div class="cli-circ">SM</div><span>Studio Marea</span></div>
+    </div>
+    <button class="arrow right" onclick="scrollCarrusel('cli',1)">›</button>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <h2>Contacto</h2>
+      <div class="foot-contact">
+        <p>maria@mariavidal.studio</p>
+        <p>+34 600 12 34 56</p>
+        <p>Bilbao, España</p>
       </div>
     </div>
-  </section>
-
-  <section id="datos" class="datos">
-    <div class="contenedor">
-      <h2 class="titulo-seccion">Los bosques en cifras</h2>
-      <p class="intro">Datos aproximados que muestran su enorme importancia.</p>
-      <div class="cifras">
-        <div class="cifra"><strong>31%</strong><span>de la superficie terrestre</span></div>
-        <div class="cifra"><strong>80%</strong><span>de las especies terrestres viven en ellos</span></div>
-        <div class="cifra"><strong>3 billones</strong><span>de árboles en el planeta</span></div>
-        <div class="cifra"><strong>1.600 M</strong><span>de personas dependen de ellos</span></div>
-      </div>
+    <div class="foot-social">
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Behance</a>
     </div>
-  </section>
+  </div>
+  <p class="foot-bottom">© 2026 María Vidal. Todos los derechos reservados.</p>
+</footer>
 
-  <section id="proteger" class="proteger">
-    <div class="contenedor">
-      <div>
-        <h2 class="titulo-seccion">Cómo protegerlos</h2>
-        <p class="intro">Pequeños gestos cotidianos suman mucho.</p>
-        <ol>
-          <li><strong>Consume madera y papel certificados</strong> (FSC o PEFC), procedentes de gestión sostenible.</li>
-          <li><strong>Reduce, reutiliza y recicla</strong> el papel y el cartón.</li>
-          <li><strong>Evita el fuego en el monte</strong> y respeta las normas en épocas de riesgo.</li>
-          <li><strong>Participa en reforestaciones</strong> con especies autóctonas.</li>
-          <li><strong>Deja el bosque como lo encontraste</strong>: no dejes basura ni salgas de los senderos.</li>
-        </ol>
-      </div>
-      <blockquote class="cita">
-        “El mejor momento para plantar un árbol fue hace veinte años. El segundo mejor momento es ahora.”
-        <small>— Proverbio popular</small>
-      </blockquote>
-    </div>
-  </section>
-
-  <footer>
-    🌳 Bosques del Mundo · Hecho con cariño por la naturaleza
-  </footer>
+<script>
+  function scrollCarrusel(id, dir){
+    const track = document.getElementById(id + '-track');
+    const card = track.querySelector(id === 'proy' ? '.proy-card' : '.cli-item');
+    const gap = 24;
+    const amount = (card.offsetWidth + gap) * 2 * dir;
+    track.scrollBy({ left: amount, behavior: 'smooth' });
+  }
+</script>
 
 </body>
 </html>
