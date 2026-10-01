@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bosques del Mundo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --musgo: #2f4a2c;
+      --pino: #1c2e1b;
+      --helecho: #6b8f47;
+      --corteza: #6a4a32;
+      --niebla: #f3f1e8;
+      --papel: #faf9f4;
+      --texto: #22281f;
+      --suave: #5d6657;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--texto);
+      background: var(--papel);
+      line-height: 1.65;
+    }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; }
+    a { color: inherit; }
+
+    /* Navegación */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(28, 46, 27, 0.95);
+      backdrop-filter: blur(6px);
+    }
+    nav .contenedor {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 20px; max-width: 1100px; margin: 0 auto;
+    }
+    nav .logo { color: #fff; font-family: "Fraunces", serif; font-size: 1.3rem; text-decoration: none; }
+    nav ul { list-style: none; display: flex; gap: 22px; }
+    nav ul a { color: #d7e3c8; text-decoration: none; font-size: .95rem; }
+    nav ul a:hover { color: #fff; }
+
+    /* Portada */
+    .portada {
+      background: linear-gradient(160deg, var(--pino) 0%, var(--musgo) 55%, var(--helecho) 100%);
+      color: #fff;
+      padding: 80px 20px;
+    }
+    .portada .contenedor {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;
+    }
+    .portada .etiqueta {
+      text-transform: uppercase; letter-spacing: .15em; font-size: .8rem; color: #c3d9a8;
+    }
+    .portada h1 { font-size: clamp(2.4rem, 6vw, 4rem); margin: 12px 0 20px; }
+    .portada p { font-size: 1.1rem; color: #e3ecd8; max-width: 34em; }
+    .boton {
+      display: inline-block; margin-top: 28px; padding: 12px 26px;
+      background: var(--niebla); color: var(--pino); border-radius: 999px;
+      text-decoration: none; font-weight: 500;
+    }
+    .boton:hover { background: #fff; }
+    .marco-imagen {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 16px;
+    }
+    .marco-imagen img {
+      width: 100%; height: auto; display: block; border-radius: 12px;
+      aspect-ratio: 4 / 5; object-fit: cover;
+    }
+    .marco-imagen figcaption { font-size: .85rem; color: #c3d9a8; margin-top: 10px; text-align: center; }
+
+    /* Secciones */
+    section { padding: 72px 20px; }
+    .contenedor { max-width: 1100px; margin: 0 auto; }
+    .titulo-seccion { font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--musgo); margin-bottom: 12px; }
+    .intro { color: var(--suave); max-width: 40em; margin-bottom: 40px; }
+
+    .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+    .tarjeta {
+      background: #fff; border-radius: 16px; padding: 26px;
+      border-top: 5px solid var(--helecho);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .tarjeta .icono { font-size: 2rem; }
+    .tarjeta h3 { font-size: 1.3rem; margin: 10px 0 8px; color: var(--pino); }
+    .tarjeta p { color: var(--suave); font-size: .95rem; }
+
+    .datos { background: var(--niebla); }
+    .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; }
+    .cifra { text-align: center; padding: 20px; }
+    .cifra strong { display: block; font-family: "Fraunces", serif; font-size: 2.6rem; color: var(--corteza); }
+    .cifra span { color: var(--suave); }
+
+    .proteger .contenedor { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .proteger ol { padding-left: 1.2em; }
+    .proteger li { margin-bottom: 14px; }
+    .proteger li strong { color: var(--musgo); }
+    .cita {
+      background: var(--musgo); color: #eef3e6; border-radius: 16px; padding: 32px;
+      font-family: "Fraunces", serif; font-size: 1.3rem;
+    }
+    .cita small { display: block; font-family: "Inter", sans-serif; font-size: .9rem; margin-top: 14px; color: #c3d9a8; }
+
+    footer { background: var(--pino); color: #b8c9a6; text-align: center; padding: 30px 20px; font-size: .9rem; }
+
+    @media (max-width: 780px) {
+      nav ul { gap: 14px; }
+      nav ul li:nth-child(n+3) { display: none; }
+      .portada { padding: 50px 16px; }
+      .portada .contenedor, .proteger .contenedor { grid-template-columns: 1fr; }
+      section { padding: 52px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="contenedor">
+      <a href="#" class="logo">🌲 Bosques</a>
+      <ul>
+        <li><a href="#tipos">Tipos</a></li>
+        <li><a href="#datos">Datos</a></li>
+        <li><a href="#proteger">Proteger</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="portada">
+    <div class="contenedor">
+      <div>
+        <span class="etiqueta">Los pulmones del planeta</span>
+        <h1>Descubre la vida que late en los bosques</h1>
+        <p>Los bosques cubren casi un tercio de la tierra firme, regulan el clima, filtran el agua y dan hogar a la mayor parte de las especies terrestres. Conocerlos es el primer paso para cuidarlos.</p>
+        <a href="#tipos" class="boton">Explorar bosques</a>
+      </div>
+      <figure class="marco-imagen">
+        <img src="img/arbol.png" alt="Árbol del bosque">
+        <figcaption>Cada árbol es un ecosistema en sí mismo.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <section id="tipos">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Tipos de bosque</h2>
+      <p class="intro">El clima, la latitud y la altitud dan forma a bosques muy distintos entre sí. Estos son algunos de los principales.</p>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <div class="icono">🌴</div>
+          <h3>Bosque tropical</h3>
+          <p>Cálido y húmedo todo el año. Alberga la mayor biodiversidad del planeta, como la Amazonía o el Congo.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="icono">🍂</div>
+          <h3>Bosque templado</h3>
+          <p>Estaciones marcadas y árboles caducifolios como robles, hayas y castaños que pierden la hoja en otoño.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="icono">🌲</div>
+          <h3>Taiga o bosque boreal</h3>
+          <p>El bioma forestal más extenso. Coníferas resistentes al frío que cubren Canadá, Escandinavia y Siberia.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="icono">🌿</div>
+          <h3>Bosque mediterráneo</h3>
+          <p>Veranos secos e inviernos suaves. Encinas, alcornoques y pinos adaptados a la sequía y al fuego.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="datos" class="datos">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Los bosques en cifras</h2>
+      <p class="intro">Datos aproximados que muestran su enorme importancia.</p>
+      <div class="cifras">
+        <div class="cifra"><strong>31%</strong><span>de la superficie terrestre</span></div>
+        <div class="cifra"><strong>80%</strong><span>de las especies terrestres viven en ellos</span></div>
+        <div class="cifra"><strong>3 billones</strong><span>de árboles en el planeta</span></div>
+        <div class="cifra"><strong>1.600 M</strong><span>de personas dependen de ellos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proteger" class="proteger">
+    <div class="contenedor">
+      <div>
+        <h2 class="titulo-seccion">Cómo protegerlos</h2>
+        <p class="intro">Pequeños gestos cotidianos suman mucho.</p>
+        <ol>
+          <li><strong>Consume madera y papel certificados</strong> (FSC o PEFC), procedentes de gestión sostenible.</li>
+          <li><strong>Reduce, reutiliza y recicla</strong> el papel y el cartón.</li>
+          <li><strong>Evita el fuego en el monte</strong> y respeta las normas en épocas de riesgo.</li>
+          <li><strong>Participa en reforestaciones</strong> con especies autóctonas.</li>
+          <li><strong>Deja el bosque como lo encontraste</strong>: no dejes basura ni salgas de los senderos.</li>
+        </ol>
+      </div>
+      <blockquote class="cita">
+        “El mejor momento para plantar un árbol fue hace veinte años. El segundo mejor momento es ahora.”
+        <small>— Proverbio popular</small>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer>
+    🌳 Bosques del Mundo · Hecho con cariño por la naturaleza
+  </footer>
+
+</body>
+</html>
